@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="{% block meta_description %}{% endblock %}">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="/">
+              <!--span id="logo">minebase</span>-->
+             <span>libmap</span>
+            </a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"
+                       data-toggle="dropdown"
+                       role="button" aria-haspopup="true"
+                       aria-expanded="false">Account
+                      <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/">Settings</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li class="dropdown-header">Session</li>
+                      <li><a href="/">Log out</a></li>
+                    </ul>
+                  </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    
+    <main class="container">
+
+
+      <div class="md-margin-top">test</div>
+      <body></body>
+    </main>
+
+    <footer class="footer text-center sm-margin-top">
+      <div class="container">
+        <ul class="list-inline">
+          {% block footer %}{% endblock %}
+        </ul>
+        <p class=" sm-margin-top sm-margin-bottom text-center text-muted">Mapping books with Flask!</p>
+      
+      </div>
+    </footer>
+
+  </body>
+</html>
