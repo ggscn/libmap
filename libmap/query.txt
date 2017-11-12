@@ -1,0 +1,12 @@
+select lat,long, cnt, numbooks from (
+SELECT lat,long, COUNT(*) as cnt, count(distinct(BookMeta_Identifier)) as numbooks
+FROM (
+select BookMeta_Identifier, ROUND(FLOAT(REGEXP_EXTRACT(SPLIT(V2Locations,';'),r'^[2-5]#.*?#.*?#.*?#.*?#(.*?)#.*?#')),3) as lat, ROUND(FLOAT(REGEXP_EXTRACT(SPLIT(V2Locations,';'),r'^[2-5]#.*?#.*?#.*?#.*?#.*?#(.*?)#')),3) AS long
+FROM (TABLE_QUERY([{}], 'REGEXP_EXTRACT(table_id, r"(\d{{4}})") BETWEEN "{}" AND "{}"')) 
+where BookMeta_Creator like '%{}%' 
+)
+where lat is not null and long is not null and abs(lat) < 80 and (abs(lat) > 0 or abs(long) > 0)
+group by lat,long
+) where cnt >= 10 and numbooks >= 10
+ORDER BY cnt DESC
+limit 13000

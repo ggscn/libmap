@@ -9,5 +9,11 @@ app.config.from_pyfile('settings.py', silent=True)
 
 @app.route("/")
 def home():
-    bigquery.get_credentials()
+    params = {}
+    params['table_address'] = 'gdelt-bq:internetarchivebooks'
+    params['start_date'] = '1800'
+    params['end_date'] = '1850'
+    params['author'] = 'Herman Melville'
+    
+    bigquery.query(**params)
     return render_template('home.html')
