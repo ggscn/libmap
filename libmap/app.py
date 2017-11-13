@@ -2,7 +2,7 @@ from flask import Flask,render_template,request
 from flask_googlemaps import GoogleMaps, Map
 from wtforms import Form, BooleanField, StringField, PasswordField, validators,DateField
 
-from libmap.lib import bigquery
+from util import bigquery
 
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config.settings')
