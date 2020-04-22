@@ -4,18 +4,18 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
-    <script src="{{ url_for('static', filename='main.js') }}"></script>
+   
     <style>
       .map {
-        height: 400px;
+        height: 600px;
         width: 100%;
       }
     </style>
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
-    <title>OpenLayers example</title>
+    <title>Libmap</title>
   </head>
   <body>
-    <h2>My Map</h2>
+    <h2>Libmap</h2>
     {% for subfield in form %}
     <tr>
        
@@ -25,7 +25,7 @@
     <button type="submit" class="wired-btn" id="query_button">Query</button>
     <div id="map" class="map"></div>
     <script type="text/javascript">
-      var map = new ol.Map({
+      var libmap = new ol.Map({
         target: 'map',
         layers: [
           new ol.layer.Tile({
@@ -38,5 +38,6 @@
         })
       });
     </script>
+     <script src="{{ url_for('static', filename='main.js') }}"></script>
   </body>
 </html>

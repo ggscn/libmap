@@ -1,24 +1,34 @@
+import os
+from google.oauth2 import service_account
 from google.cloud import bigquery
 
 #https://blog.gdeltproject.org/google-bigquery-3-5m-books-sample-queries/
 
-def get_credentials():
-    service_account_path = '../instance/libmap.json'
-    return bigquery.Client.from_service_account_json(
-        service_account_path)
-    
+class BigQuery:
+    def __init__(self, project_name=None, credentials=None):
+        if credentials is None:
+            self.bq_client = bigquery.Client()
 
-def query(table_address,start_date,end_date,title):
 
-    with open('query.txt', 'r') as query_file:
-        query = query_file.read()
+    @classmethod
+    def get_query_str(cls, query_name):
+        query_str_path = '{}/{}/{}.sql'.format(
+            os.path.dirname(os.path.abspath(__file__)),
+            'queries',
+            query_name
+        )
 
-    job_config = bigquery.QueryJobConfig()
-    job_config.use_legacy_sql = True
+        query_str_path = query_str_path.replace('util/','')
+        with open(query_str_path, 'r') as f:
+            query_str = f.read()
+        return query_str
 
-    client = get_credentials()
-    query = query.format(table_address,start_date,end_date,title)
-    query_job = client.query(query, job_config=job_config)
-    print(query)
 
-    return query_job.result()  # Waits for job to complete.
+    def query(self, query_str):
+        query_result = self.bq_client.query(
+            query_str).result()
+        
+        cols = [x.name for x in query_result.schema]
+        rows = [{c: r[i] for i, c in enumerate(cols)} for r in query_result]
+        return rows
+
