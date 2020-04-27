@@ -5,7 +5,7 @@ This project is an open source prototype of [libmap.dev](https://libmap.dev), wh
 ## Running the app
 To run this application, you must do the following:
 
-* Set the `GOOGLE_APPLICATION_CREDENTIALS` to the path of your service_account.json. This lets you authenticate with Google BigQuery
-* Set the `FLASK_APP` environment variable to the path folder containing the app.py file.
+* Set the `GOOGLE_APPLICATION_CREDENTIALS` to the path of your service_account.json. This lets you authenticate with Google BigQuery. Note: You may be billed for queries depending on your usage.
+* Set the `FLASK_APP` environment variable to the path of the app.py file.
 * Install the python3 dependencies in the requirements.txt file using `pip3 install -r requirements.txt`
 * Run using `python3 -m flask run `
