@@ -9,8 +9,6 @@ function url_encode_dict(params){
 }
 
 async function do_get(url, params={}) {
-
-
     if (!(Object.entries(params).length === 0 && params.constructor === Object)){
         url_encoded_params = url_encode_dict(params);
         url = url + '?' + url_encoded_params;
@@ -28,8 +26,6 @@ async function do_get(url, params={}) {
 
     return content;
 }
-
-
 
 function get_input_value(ele_id){
     return document.getElementById(ele_id).value;
@@ -88,6 +84,3 @@ window.onload = function () {
     document.getElementById('query_button').addEventListener('click', function () { 
     populate_map();
 }, false)};
-
-
-

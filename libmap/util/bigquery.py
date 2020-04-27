@@ -2,8 +2,6 @@ import os
 from google.oauth2 import service_account
 from google.cloud import bigquery
 
-#https://blog.gdeltproject.org/google-bigquery-3-5m-books-sample-queries/
-
 class BigQuery:
     def __init__(self, project_name=None, credentials=None):
         if credentials is None:
@@ -12,6 +10,7 @@ class BigQuery:
 
     @classmethod
     def get_query_str(cls, query_name):
+        """Return a query string stored in the queries folder"""
         query_str_path = '{}/{}/{}.sql'.format(
             os.path.dirname(os.path.abspath(__file__)),
             'queries',
@@ -25,6 +24,8 @@ class BigQuery:
 
 
     def query(self, query_str):
+        """Query BigQuery and return the results as a list of dicts (records)
+        """
         query_result = self.bq_client.query(
             query_str).result()
         

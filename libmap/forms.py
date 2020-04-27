@@ -1,4 +1,4 @@
-from wtforms import Form, BooleanField, StringField, PasswordField, validators,DateField
+from wtforms import Form, StringField
 
 class SearchForm(Form):
     title = StringField('Title')
